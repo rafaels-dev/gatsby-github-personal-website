@@ -4,8 +4,8 @@ module.exports = {
     layout: `sidebar`,
     social: {
       dev: `https://dev.to/thakkaryash94`,
-      twitter: `https://twitter.com/mrviyet`,
-      linkedIn: `https://www.linkedin.com/in/thakkaryash94`
+      twitter: `https://dev.to/rafaelsdev`,
+      linkedIn: `https://www.linkedin.com/in/rafaelschettino/`
     }
   },
   pathPrefix: process.env.PATH_PREFIX || '/',

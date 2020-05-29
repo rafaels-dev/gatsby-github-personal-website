@@ -1,5 +1,5 @@
 ---
-title: "Welcome to Jekyll2!"
+title: "Hello, World!"
 published: true
 ---
 
