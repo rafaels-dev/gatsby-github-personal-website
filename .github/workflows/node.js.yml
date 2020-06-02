@@ -27,7 +27,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Save public folder
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: public
         path: public
@@ -36,10 +36,9 @@ jobs:
     
     steps:
       - name: Download files to publish
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           name: public
-          path: public
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
