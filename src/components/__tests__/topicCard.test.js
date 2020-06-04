@@ -6,7 +6,7 @@ import TopicCard from '../topicCard.js';
 describe('TopicCard', () => {
     it('Renders correctly', () => {
         const topic = {
-            description: 'My Description'
+            description: 'My Description 2'
         };
         const tree = renderer
             .create(<TopicCard topic={topic} />)
