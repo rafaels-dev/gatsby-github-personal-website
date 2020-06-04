@@ -11,14 +11,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      node: 12
 
     steps:
     - uses: actions/checkout@v2
     
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ env.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: ${{ env.node }}
     
     - name: Cache node modules
       uses: actions/cache@v1
@@ -26,11 +28,7 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: ./node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+        key: ${{ env.node }}-${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
     
     - run: npm install
     - run: npm test

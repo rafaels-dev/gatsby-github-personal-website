@@ -8,17 +8,20 @@ on:
     branches: ['*', '*/*', '!master']
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['10', '12']
 
     steps:
     - uses: actions/checkout@v2
     
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: ${{ matrix.node }}
     
     - name: Cache node modules
       uses: actions/cache@v1
@@ -26,11 +29,7 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: ./node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+        key: ${{ matrix.node }}-${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
     
     - run: npm install
     - run: npm test
